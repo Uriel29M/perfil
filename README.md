@@ -1,3 +1,3 @@
-# Perfis da comunidade Banca Digital
+# Perfis da Banca Digital
 
-Frontend separado para perfis públicos e privados, usando o backend Supabase já existente para preservar contas e dados.
+Site independente de perfis públicos e privados, usando o projeto Supabase existente para preservar contas e dados.
