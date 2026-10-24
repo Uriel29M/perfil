@@ -1,8 +1,8 @@
-const CACHE_VERSION = "profile-site-shell-v4";
+const CACHE_VERSION = "profile-site-shell-v5";
 const SHELL_CACHE = CACHE_VERSION;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css?v=profile-site-4",
-  "./js/app.js?v=profile-site-4", "./js/reader-deps.js?v=5-progressive-telegram", "./js/catalog-sync.js?v=6-telegram-pages",
+  "./js/app.js?v=profile-site-5", "./js/reader-deps.js?v=5-progressive-telegram", "./js/catalog-sync.js?v=6-telegram-pages",
   "./js/catalog-identity.js?v=1", "./js/telegram-auto.js?v=5-external-media-gateway",
   "./js/telegram-pages.js?v=6-minimize",
   "./js/telegram-covers.js?v=2", "./js/data.js?v=2.2.7.39",
@@ -11,8 +11,7 @@ const APP_SHELL = [
   "./js/data/dc-comics/milestone.js?v=1.1.1",
   "./js/data/dc-comics/novos-52.js?v=1.0.26",
   "./js/data/loading-tips.js?v=1.0.0", "./js/supabase.js",
-  "./assets/bucho/ocultas.png",
-  "./assets/barracavermelhaicon.png?v=2",
+  "./assets/album/chiclete.svg", "./assets/album/chiclete2.svg",
   "./assets/barracabrancaicon.png?v=1", "./assets/semfoto.jpg?v=1",
   "./assets/papercomicsbackground.jpg", "./assets/papercomicsbackgroung.jpg"
 ];
