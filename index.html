@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" type="image/png" href="assets/barracavermelhaicon.png?v=2">
+  <link rel="apple-touch-icon" href="assets/barracabrancaicon.png?v=1">
+  <title>Perfis da Banca Digital</title>
+  <meta name="description" content="Perfis públicos e privados da comunidade Banca Digital.">
+    <link rel="stylesheet" href="css/style.css?v=profile-site-1">
+  <style>
+    @media (hover: hover) and (pointer: fine) {
+      .card-wrap > .card:hover > .card-completed,
+      .card-wrap > .card:focus-within > .card-completed {
+        top: 32px;
+        left: 9px;
+        padding: 4px 7px;
+        border: 0;
+        border-radius: 5px;
+        background: rgba(0,0,0,.72);
+      }
+    }
+  </style>
+  <script>
+    // Mantém o app offline, mas também garante que uma versão nova assuma
+    // a aba atual sem deixá-la executando JavaScript antigo.
+    if ("serviceWorker" in navigator) {
+      const initialControllerUrl = navigator.serviceWorker.controller?.scriptURL || "";
+      navigator.serviceWorker.addEventListener("controllerchange", () => {
+        const nextControllerUrl = navigator.serviceWorker.controller?.scriptURL || "";
+        if (!initialControllerUrl || !nextControllerUrl || nextControllerUrl === initialControllerUrl) return;
+        const reloadKey = "perfilSiteReloadedServiceWorker";
+        if (sessionStorage.getItem(reloadKey) === nextControllerUrl) return;
+        sessionStorage.setItem(reloadKey, nextControllerUrl);
+        window.location.reload();
+      });
+      window.addEventListener("load", () => {
+        navigator.serviceWorker.register("./sw.js?v=profile-site-1", { updateViaCache: "none" })
+          .then(registration => registration.update())
+          .catch(error => console.warn("Modo offline indisponível:", error));
+      });
+    }
+  </script>
+</head>
+<body class="profile-site-mode">
+  <div id="app">
+    <header class="topbar">
+      <a class="brand" href="https://uriel29m.github.io/bancadigital/" aria-label="Voltar à Banca Digital">
+        <span class="brand-mark"><img class="brand-logo" src="assets/barracabrancaicon.png?v=1" alt="Banca Digital"></span>
+        <span>Perfis<span class="brand-accent"> da Banca</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Principal">
+        <button data-section="home" class="nav-link active">Início</button>
+        <button data-section="comics" class="nav-link">Quadrinhos</button>
+        <button data-section="local-box" class="nav-link local-box-nav" style="display:none">Minha caixa</button>
+        <a href="#" class="nav-link album-nav" data-public-album-nav style="display:none">Álbum</a>
+      </nav>
+      <div class="top-actions">
+        <button class="reader-btn downloads-header-btn" data-action="downloads" title="Downloads" aria-label="Downloads">↓<span class="download-badge" hidden></span></button>
+        <button class="reader-btn ranking-header-btn" data-section="ranking" title="Ranking" aria-label="Ranking">🏆</button>
+        <button class="reader-btn random-header-btn" data-action="random" title="Surpreenda-me" aria-label="Surpreenda-me">🎲</button>
+        <button class="reader-btn messages-header-btn" data-action="messages" title="Mensagens" aria-label="Mensagens">💬<span class="message-badge" hidden></span></button>
+        <button class="icon-btn notification-bell" data-action="notifications-popup" title="Notificações" aria-label="Notificações"><span class="notification-bell-icon">🔔</span><span class="notification-badge" hidden></span></button>
+        <button class="icon-btn staff-activity-button" data-action="staff-activity" title="Monitoramento" aria-label="Monitoramento">📜</button>
+        <button class="icon-btn" data-action="focus-search" title="Pesquisar">⌕</button>
+        <button class="avatar" data-action="open-profile-page" title="Entrar ou abrir meu perfil"><img class="top-avatar-img" src="assets/semfoto.jpg?v=1" alt="Perfil"></button>
+      </div>
+    </header>
+    <nav class="mobile-bottom-nav" aria-label="Ações principais no celular">
+      <button type="button" class="mobile-bottom-item" data-mobile-action="downloads" aria-label="Downloads">
+        <span class="mobile-bottom-icon" aria-hidden="true">↓</span>
+        <span>Downloads</span>
+      </button>
+      <button type="button" class="mobile-bottom-item" data-mobile-section="ranking" aria-label="Ranking">
+        <span class="mobile-bottom-icon" aria-hidden="true">🏆</span>
+        <span>Ranking</span>
+      </button>
+      <button type="button" class="mobile-bottom-item" data-mobile-section="home" aria-label="Início">
+        <span class="mobile-bottom-icon" aria-hidden="true"><img class="mobile-bottom-icon-image" src="assets/barracavermelhaicon.png?v=2" alt=""></span>
+        <span>Início</span>
+      </button>
+      <button type="button" class="mobile-bottom-item" data-mobile-action="messages" aria-label="Mensagens">
+        <span class="mobile-bottom-icon" aria-hidden="true">💬</span>
+        <span>Mensagens</span>
+      </button>
+      <details class="mobile-more-menu">
+        <summary class="mobile-bottom-item" aria-label="Mais opções">
+          <span class="mobile-bottom-icon" aria-hidden="true">•••</span>
+          <span>Mais</span>
+        </summary>
+        <div class="mobile-more-popover" role="menu" aria-label="Mais opções de navegação">
+          <button type="button" data-mobile-action="random" role="menuitem">🎲 Aleatório</button>
+          <button type="button" data-mobile-section="comics" role="menuitem">Quadrinhos</button>
+          <button type="button" data-mobile-section="album" role="menuitem" hidden>Álbum</button>
+        </div>
+      </details>
+    </nav>
+    <main id="main"></main>
+    <footer class="footer">
+      <div>
+        <strong>Sobre a Banca</strong>
+        <span>A Banca Digital é uma plataforma para descobrir, organizar e ler quadrinhos e mangás em um só lugar, com catálogo, perfis, coleções e recursos comunitários. Nosso objetivo é facilitar a descoberta de histórias e tornar a navegação pela biblioteca mais simples e agradável.</span>
+      </div>
+      <div class="footer-donation">
+        <strong>Apoie a Banca Digital</strong>
+        <span>Se quiser ajudar o projeto, doe qualquer valor via Pix.</span>
+        <div class="donation-pix-key"><code id="donation-pix-key">bancadigitalhq@gmail.com</code><button type="button" class="small-btn" data-copy-donation-pix>Copiar Pix</button></div>
+      </div>
+      <div class="footer-links">
+        <a href="privacidade.html">Privacidade</a>
+        <a href="termos.html">Termos e Regras</a>
+        <a href="contato.html">Contato e Denúncia</a>
+        <button data-action="submit">Nova edição</button>
+        <button data-action="open-admin">Administração</button>
+      </div>
+    </footer>
+  </div>
+  <div id="modal-root"></div>
+  <div id="toast-root" class="toast-root"></div>
+  <script src="js/reader-deps.js?v=5-progressive-telegram"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase.js"></script>
+  <script src="js/catalog-sync.js?v=6-telegram-pages"></script>
+  <script src="js/telegram-auto.js?v=5-external-media-gateway"></script>
+  <script src="js/telegram-pages.js?v=6-minimize"></script>
+  <script src="js/series-default-covers.js?v=1"></script>
+  <script src="js/telegram-covers.js?v=2"></script>
+  <script src="js/data.js?v=2.2.7.39"></script>
+  <!-- Catálogos por editora/selo. -->
+  <script src="js/data/dc-comics/recentes.js?v=2.2.7.54"></script>
+  <script>
+    window.PUBLISHED_CATALOG = structuredClone({
+      library: window.DEFAULT_LIBRARY || [],
+      series: window.DEFAULT_SERIES || []
+    });
+  </script>
+  <script src="js/data/dc-comics/black-label.js?v=1.0.14"></script>
+  <script src="js/data/dc-comics/milestone.js?v=1.1.1"></script>
+  <script src="js/data/dc-comics/novos-52.js?v=1.0.26"></script>
+  <script src="js/catalog-identity.js?v=1"></script>
+  <script src="js/data/loading-tips.js?v=1.0.0"></script>
+    <script src="js/app.js?v=profile-site-1"></script>
+  <script src="js/series-more.js?v=2-edition-about"></script>
+  <script>
+    (() => {
+      const mobileNav = document.querySelector('.mobile-bottom-nav');
+      if (!mobileNav) return;
+
+      const findTopbarControl = (kind, value) => {
+        if (kind === 'section' && value === 'album') {
+          return document.querySelector('.topbar [data-public-album-nav]');
+        }
+        const selector = kind === 'section' ? '.topbar [data-section]' : '.topbar [data-action]';
+        return Array.from(document.querySelectorAll(selector)).find(element => (
+          kind === 'section' ? element.dataset.section === value : element.dataset.action === value
+        ));
+      };
+
+      const albumNav = document.querySelector('.topbar [data-public-album-nav]');
+      const mobileAlbum = mobileNav.querySelector('[data-mobile-section="album"]');
+      const syncMobileAlbumVisibility = () => {
+        if (!mobileAlbum) return;
+        const available = Boolean(
+          albumNav &&
+          getComputedStyle(albumNav).display !== 'none' &&
+          albumNav.getAttribute('href') &&
+          albumNav.getAttribute('href') !== '#'
+        );
+        mobileAlbum.hidden = !available;
+      };
+      syncMobileAlbumVisibility();
+      if (albumNav) {
+        new MutationObserver(syncMobileAlbumVisibility).observe(albumNav, {
+          attributes: true,
+          attributeFilter: ['style', 'href']
+        });
+      }
+
+      mobileNav.addEventListener('click', event => {
+        const trigger = event.target.closest('[data-mobile-action], [data-mobile-section]');
+        if (!trigger) return;
+
+        const topbar = document.querySelector('.topbar');
+        const action = trigger.dataset.mobileAction || '';
+        const section = trigger.dataset.mobileSection || '';
+
+        if (topbar?.classList.contains('is-offline') && action !== 'downloads') return;
+
+        const target = section
+          ? findTopbarControl('section', section)
+          : findTopbarControl('action', action);
+        if (!target) return;
+
+        event.preventDefault();
+        const openMenu = trigger.closest('.mobile-more-menu') || mobileNav.querySelector('.mobile-more-menu[open]');
+        openMenu?.removeAttribute('open');
+        target.click();
+      });
+
+      document.addEventListener('click', event => {
+        const openMenu = mobileNav.querySelector('.mobile-more-menu[open]');
+        if (openMenu && !openMenu.contains(event.target)) openMenu.removeAttribute('open');
+      });
+    })();
+  </script>
+</body>
+</html>
