@@ -1,4 +1,4 @@
-const CACHE_VERSION = "profile-site-shell-v5";
+const CACHE_VERSION = "profile-site-shell-v6";
 const SHELL_CACHE = CACHE_VERSION;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css?v=profile-site-4",
