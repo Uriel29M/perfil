@@ -2795,6 +2795,15 @@
     return url.href;
   }
 
+  function navigateToPublicProfile(username, collectionId = null, album = false, top10ListId = null) {
+    const profileUrl = publicProfileHref(username, collectionId || "", album, top10ListId || "");
+    if (!PROFILE_SITE_MODE) {
+      window.location.assign(profileUrl);
+      return;
+    }
+    return loadPublicProfile(username, collectionId || null, album, { top10ListId: top10ListId || null });
+  }
+
   function openOwnPublicProfile() {
     if (!state.session?.user || !state.profile?.username) return openAuthPage();
     const profileUrl = publicProfileHref(state.profile.username);
@@ -8644,7 +8653,7 @@
   }
 
   function renderLoginPage() {
-    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracavermelhaicon.png?v=2" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Entrar</h1></div></div><p class="section-subtitle">Use seu usuário ou email e sua senha para acessar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário ou email</label><input name="username" required placeholder="seu_usuario ou voce@email.com" autocomplete="username"></div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="current-password"></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="login">Entrar</button><button type="button" class="small-btn" data-auth-switch="signup">Criar conta</button></div><button class="link-btn" type="button" data-forgot-password>Esqueci minha senha</button><div class="auth-message" id="auth-message"></div></form></div></div>`;
+    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracabrancaicon.png?v=1" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Entrar</h1></div></div><p class="section-subtitle">Use seu usuário ou email e sua senha para acessar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário ou email</label><input name="username" required placeholder="seu_usuario ou voce@email.com" autocomplete="username"></div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="current-password"></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="login">Entrar</button><button type="button" class="small-btn" data-auth-switch="signup">Criar conta</button></div><button class="link-btn" type="button" data-forgot-password>Esqueci minha senha</button><div class="auth-message" id="auth-message"></div></form></div></div>`;
   }
 
   function openAccountPlanAdmin() {
@@ -8671,7 +8680,7 @@
   }
 
   function renderSignupPage() {
-    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracavermelhaicon.png?v=2" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Criar conta</h1></div></div><p class="section-subtitle">Crie seu acesso para salvar edições e montar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário</label><input name="username" required pattern="[A-Za-z0-9_]{3,24}" placeholder="seu_usuario" autocomplete="username"></div><div class="field"><label>Email <span class="field-optional">(opcional)</span></label><input name="email" type="email" placeholder="voce@email.com" autocomplete="email"></div><div class="notice auth-notice">Sem email, não será possível recuperar sua conta caso você perca a senha.</div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="new-password"><small class="format-hint">Use pelo menos 8 caracteres.</small></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="signup">Criar conta</button><button type="button" class="small-btn" data-auth-switch="login">Já tenho uma conta</button></div><div class="auth-message" id="auth-message"></div></form></div></div>`;
+    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracabrancaicon.png?v=1" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Criar conta</h1></div></div><p class="section-subtitle">Crie seu acesso para salvar edições e montar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário</label><input name="username" required pattern="[A-Za-z0-9_]{3,24}" placeholder="seu_usuario" autocomplete="username"></div><div class="field"><label>Email <span class="field-optional">(opcional)</span></label><input name="email" type="email" placeholder="voce@email.com" autocomplete="email"></div><div class="notice auth-notice">Sem email, não será possível recuperar sua conta caso você perca a senha.</div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="new-password"><small class="format-hint">Use pelo menos 8 caracteres.</small></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="signup">Criar conta</button><button type="button" class="small-btn" data-auth-switch="login">Já tenho uma conta</button></div><div class="auth-message" id="auth-message"></div></form></div></div>`;
   }
 
   function renderPasswordResetPage() {
@@ -9284,7 +9293,7 @@
       button.dataset.bound = "true";
       button.onclick = () => {
         button.closest(".chat-modal, .comments-modal, .top10-comments-modal")?.querySelector("[data-close]")?.click();
-        loadPublicProfile(button.dataset.chatTop10Owner, null, false, { top10ListId: button.dataset.chatTop10Open });
+        navigateToPublicProfile(button.dataset.chatTop10Owner, null, false, button.dataset.chatTop10Open);
       };
     });
     $$('[data-chat-top10-preview-item]', root).forEach(row => {
@@ -12586,15 +12595,15 @@
       } else if (notification?.type === "collection_like" && notification.metadata?.collection_id) {
         openCollection(String(notification.metadata.collection_id));
       } else if ((notification?.type === "top10_item_like" || notification?.type === "top10_item_dislike") && notification.metadata?.profile_username) {
-        await loadPublicProfile(notification.metadata.profile_username, null, false, { top10ListId: notification.metadata.list_id || null });
+        await navigateToPublicProfile(notification.metadata.profile_username, null, false, notification.metadata.list_id || null);
       } else if ((notification?.type === "profile_wall_comment" || notification?.type === "profile_wall_reply") && notification.metadata?.profile_username) {
-        await loadPublicProfile(notification.metadata.profile_username);
+        await navigateToPublicProfile(notification.metadata.profile_username);
       } else if (notification?.type === "mention" && notification.metadata?.item_id) {
         const item = state.db.library.find(entry => String(entry.id) === String(notification.metadata.item_id));
         if (item) openCommentsPopup(item);
         else openNotificationsPopup();
       } else if (notification?.type === "follow" && notification.actor?.username) {
-        await loadPublicProfile(notification.actor.username);
+        await navigateToPublicProfile(notification.actor.username);
       } else {
         openNotificationsPopup();
       }
@@ -12605,7 +12614,7 @@
       const notification = state.notifications.find(item => String(item.id) === String(link.closest("[data-notification-open]")?.dataset.notificationOpen));
       await markNotificationRead(notification?.id);
       overlay.remove();
-      await loadPublicProfile(link.dataset.notificationProfile);
+      await navigateToPublicProfile(link.dataset.notificationProfile);
     });
     $('[data-mark-all-notifications]', overlay)?.addEventListener("click", async () => {
       await markAllNotificationsRead();
