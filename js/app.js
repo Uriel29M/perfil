@@ -679,40 +679,40 @@
   };
   const SHELF_STYLE_OPTIONS = [
     ["none", "Original", "", false],
-    ["sand", "Areia", "assets/papercomicsbackground.jpg", false],
-    ["sponge", "Esponja", "assets/papercomicsbackground.jpg", false],
-    ["grass", "Grama", "assets/papercomicsbackground.jpg", false],
-    ["classic-wood", "Madeira clássica", "assets/papercomicsbackground.jpg", false],
-    ["straw", "Palha", "assets/papercomicsbackground.jpg", false],
-    ["stones", "Pedras", "assets/papercomicsbackground.jpg", false],
-    ["rustic", "Rústica", "assets/papercomicsbackground.jpg", false],
-    ["bricks-1", "Tijolos 1", "assets/papercomicsbackground.jpg", false],
-    ["bricks-2", "Tijolos 2", "assets/papercomicsbackground.jpg", false],
-    ["log", "Tronco", "assets/papercomicsbackground.jpg", false],
-    ["crumpled-1", "Amassado 1", "assets/papercomicsbackground.jpg", true],
-    ["crumpled-2", "Amassado 2", "assets/papercomicsbackground.jpg", true],
-    ["box", "Caixa", "assets/papercomicsbackground.jpg", true],
-    ["basket", "Cestinha", "assets/papercomicsbackground.jpg", true],
-    ["comics-a", "Comics A", "assets/papercomicsbackground.jpg", true],
-    ["comics-b", "Comics B", "assets/papercomicsbackground.jpg", true],
-    ["comics-l", "Comics L", "assets/papercomicsbackground.jpg", true],
-    ["comics-m", "Comics M", "assets/papercomicsbackground.jpg", true],
-    ["comics-v", "Comics V", "assets/papercomicsbackground.jpg", true],
-    ["style-1", "Estilo 1", "assets/papercomicsbackground.jpg", true],
-    ["style-2", "Estilo 2", "assets/papercomicsbackground.jpg", true],
-    ["style-3", "Estilo 3", "assets/papercomicsbackground.jpg", true],
-    ["style-4", "Estilo 4", "assets/papercomicsbackground.jpg", true],
-    ["style-5", "Estilo 5", "assets/papercomicsbackground.jpg", true],
-    ["jeans", "Jeans", "assets/papercomicsbackground.jpg", true],
-    ["lego-1", "Lego 1", "assets/papercomicsbackground.jpg", true],
-    ["lego-2", "Lego 2", "assets/papercomicsbackground.jpg", true],
-    ["default-1", "Padrão 1", "assets/papercomicsbackground.jpg", true],
-    ["default-2", "Padrão 2", "assets/papercomicsbackground.jpg", true],
-    ["default-3", "Padrão 3", "assets/papercomicsbackground.jpg", true],
-    ["default-5", "Padrão 5", "assets/papercomicsbackground.jpg", true],
-    ["wood-floor", "Piso de madeira", "assets/papercomicsbackground.jpg", true],
-    ["frame", "Quadro", "assets/papercomicsbackground.jpg", true],
-    ["trace", "Traçado", "assets/papercomicsbackground.jpg", true],
+    ["sand", "Areia", "assets/prateleiras/Comum/areia.jpg", false],
+    ["sponge", "Esponja", "assets/prateleiras/Comum/esponja.jpg", false],
+    ["grass", "Grama", "assets/prateleiras/Comum/grama.jpg", false],
+    ["classic-wood", "Madeira clássica", "assets/prateleiras/Comum/madeira%20classica.jpg", false],
+    ["straw", "Palha", "assets/prateleiras/Comum/palha.jpg", false],
+    ["stones", "Pedras", "assets/prateleiras/Comum/pedras.jpg", false],
+    ["rustic", "Rústica", "assets/prateleiras/Comum/rustica.jpg", false],
+    ["bricks-1", "Tijolos 1", "assets/prateleiras/Comum/tijolos%201.jpg", false],
+    ["bricks-2", "Tijolos 2", "assets/prateleiras/Comum/tijolos%202.jpg", false],
+    ["log", "Tronco", "assets/prateleiras/Comum/tronco.jpg", false],
+    ["crumpled-1", "Amassado 1", "assets/prateleiras/Lenda/amassado%201.png", true],
+    ["crumpled-2", "Amassado 2", "assets/prateleiras/Lenda/amassado%202.jpg", true],
+    ["box", "Caixa", "assets/prateleiras/Lenda/caixa.png", true],
+    ["basket", "Cestinha", "assets/prateleiras/Lenda/cestinha.jpg", true],
+    ["comics-a", "Comics A", "assets/prateleiras/Lenda/comics%20A.jpg", true],
+    ["comics-b", "Comics B", "assets/prateleiras/Lenda/comics%20B.jpg", true],
+    ["comics-l", "Comics L", "assets/prateleiras/Lenda/comics%20L.jpg", true],
+    ["comics-m", "Comics M", "assets/prateleiras/Lenda/comics%20M.jpg", true],
+    ["comics-v", "Comics V", "assets/prateleiras/Lenda/comics%20V.jpg", true],
+    ["style-1", "Estilo 1", "assets/prateleiras/Lenda/estilos%201.jpg", true],
+    ["style-2", "Estilo 2", "assets/prateleiras/Lenda/estilos%202.jpg", true],
+    ["style-3", "Estilo 3", "assets/prateleiras/Lenda/estilos%203.jpg", true],
+    ["style-4", "Estilo 4", "assets/prateleiras/Lenda/estilos%204.jpg", true],
+    ["style-5", "Estilo 5", "assets/prateleiras/Lenda/estilos%205.png", true],
+    ["jeans", "Jeans", "assets/prateleiras/Lenda/jeans.png", true],
+    ["lego-1", "Lego 1", "assets/prateleiras/Lenda/lego%201.jpg", true],
+    ["lego-2", "Lego 2", "assets/prateleiras/Lenda/lego%202.jpg", true],
+    ["default-1", "Padrão 1", "assets/prateleiras/Lenda/padr%C3%A3o%201.jpg", true],
+    ["default-2", "Padrão 2", "assets/prateleiras/Lenda/padr%C3%A3o%202.jpg", true],
+    ["default-3", "Padrão 3", "assets/prateleiras/Lenda/padr%C3%A3o%203.jpg", true],
+    ["default-5", "Padrão 5", "assets/prateleiras/Lenda/padr%C3%A3o%205.jpg", true],
+    ["wood-floor", "Piso de madeira", "assets/prateleiras/Lenda/piso%20de%20madeira.jpg", true],
+    ["frame", "Quadro", "assets/prateleiras/Lenda/quadro.jpg", true],
+    ["trace", "Traçado", "assets/prateleiras/Lenda/tra%C3%A7ado.jpg", true],
   ];
   function shelfStyleOptionsFor(profile = state.profile) {
     const legendary = hasLegendaryAccess(profile);
@@ -2606,7 +2606,7 @@
     const avatarClass = staff || isGuria ? "avatar-staff" : faction?.color ? "avatar-faction" : "";
     const avatarStyle = !staff && !isGuria && faction?.color ? ` style="--avatar-faction-color:${escapeHTML(faction.color)}"` : "";
     const isGeneratedAvatar = String(profile?.avatar_url || "").startsWith(RANDOM_AVATAR_BASE_URL);
-    const avatarUrl = state.session?.offline || navigator.onLine === false ? DEFAULT_AVATAR_URL : (isGuria ? "assets/semfoto.jpg?v=1" : (isGeneratedAvatar ? generatedAvatarForProfile(profile) : (profile?.avatar_url || generatedAvatarForProfile(profile))));
+    const avatarUrl = state.session?.offline || navigator.onLine === false ? DEFAULT_AVATAR_URL : (isGuria ? "assets/guria/guriaperfil.png?v=1" : (isGeneratedAvatar ? generatedAvatarForProfile(profile) : (profile?.avatar_url || generatedAvatarForProfile(profile))));
     return `<img class="${className} ${avatarClass}"${avatarStyle} src="${escapeHTML(avatarUrl)}" onerror="this.onerror=null;this.src='${DEFAULT_AVATAR_URL}'" alt="Foto de ${escapeHTML(profile?.username || "usuário")}">`;
   }
 
@@ -2805,7 +2805,10 @@
   }
 
   function openOwnPublicProfile() {
-    if (!state.session?.user || !state.profile?.username) return openAuthPage();
+    if (!state.session?.user || !state.profile?.username) {
+      if (!PROFILE_SITE_MODE) { window.location.assign(`${PROFILE_SITE_BASE}?pagina=entrar`); return; }
+      return openAuthPage();
+    }
     const profileUrl = publicProfileHref(state.profile.username);
     const currentUrl = `${window.location.origin}${window.location.pathname}${window.location.search}`;
     if (!PROFILE_SITE_MODE || currentUrl !== profileUrl) {
@@ -4195,7 +4198,7 @@
       const slotPreference = slotPreferences.get(String(group.id));
       const slotBlocked = Boolean(award?.requests_blocked || slotPreference?.blocked || slotPreference === true);
       const gumPlacedBy = award?.gum_placed_by || slotPreference?.placedBy || null;
-      const gumAsset = gumPlacedBy && String(gumPlacedBy) !== String(state.session?.user?.id) ? "assets/album/chiclete2.svg" : "assets/album/chiclete.svg";
+      const gumAsset = gumPlacedBy && String(gumPlacedBy) !== String(state.session?.user?.id) ? "assets/album/chiclete2.png" : "assets/album/chiclete.png";
       const adminDiscard = !isOwn && state.profile?.plan === "admin" && award ? `<button type="button" class="small-btn danger" data-admin-sticker-discard="${award.id}">Descartar</button>` : "";
       const displayRow = isOwn && award ? (state.profileDisplayStickers || []).find(row => String(row.award_id) === String(award.id)) : null;
       const displayLimitReached = (state.profileDisplayStickers || []).length >= 5;
@@ -8653,7 +8656,7 @@
   }
 
   function renderLoginPage() {
-    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracabrancaicon.png?v=1" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Entrar</h1></div></div><p class="section-subtitle">Use seu usuário ou email e sua senha para acessar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário ou email</label><input name="username" required placeholder="seu_usuario ou voce@email.com" autocomplete="username"></div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="current-password"></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="login">Entrar</button><button type="button" class="small-btn" data-auth-switch="signup">Criar conta</button></div><button class="link-btn" type="button" data-forgot-password>Esqueci minha senha</button><div class="auth-message" id="auth-message"></div></form></div></div>`;
+    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracavermelhaicon.png?v=2" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Entrar</h1></div></div><p class="section-subtitle">Use seu usuário ou email e sua senha para acessar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário ou email</label><input name="username" required placeholder="seu_usuario ou voce@email.com" autocomplete="username"></div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="current-password"></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="login">Entrar</button><button type="button" class="small-btn" data-auth-switch="signup">Criar conta</button></div><button class="link-btn" type="button" data-forgot-password>Esqueci minha senha</button><div class="auth-message" id="auth-message"></div></form></div></div>`;
   }
 
   function openAccountPlanAdmin() {
@@ -8680,7 +8683,7 @@
   }
 
   function renderSignupPage() {
-    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracabrancaicon.png?v=1" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Criar conta</h1></div></div><p class="section-subtitle">Crie seu acesso para salvar edições e montar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário</label><input name="username" required pattern="[A-Za-z0-9_]{3,24}" placeholder="seu_usuario" autocomplete="username"></div><div class="field"><label>Email <span class="field-optional">(opcional)</span></label><input name="email" type="email" placeholder="voce@email.com" autocomplete="email"></div><div class="notice auth-notice">Sem email, não será possível recuperar sua conta caso você perca a senha.</div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="new-password"><small class="format-hint">Use pelo menos 8 caracteres.</small></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="signup">Criar conta</button><button type="button" class="small-btn" data-auth-switch="login">Já tenho uma conta</button></div><div class="auth-message" id="auth-message"></div></form></div></div>`;
+    return `<div class="content auth-page"><div class="auth-card"><div class="auth-heading"><img class="auth-logo" src="assets/barracavermelhaicon.png?v=2" alt="" width="64" height="64"><div class="auth-heading-copy"><div class="eyebrow">Banca Digital</div><h1 class="auth-title">Criar conta</h1></div></div><p class="section-subtitle">Crie seu acesso para salvar edições e montar sua estante.</p><form id="auth-form"><div class="field"><label>Usuário</label><input name="username" required pattern="[A-Za-z0-9_]{3,24}" placeholder="seu_usuario" autocomplete="username"></div><div class="field"><label>Email <span class="field-optional">(opcional)</span></label><input name="email" type="email" placeholder="voce@email.com" autocomplete="email"></div><div class="notice auth-notice">Sem email, não será possível recuperar sua conta caso você perca a senha.</div><div class="field"><label>Senha</label><input name="password" type="password" required minlength="8" autocomplete="new-password"><small class="format-hint">Use pelo menos 8 caracteres.</small></div><div class="auth-actions"><button type="submit" class="btn btn-danger" data-auth-mode="signup">Criar conta</button><button type="button" class="small-btn" data-auth-switch="login">Já tenho uma conta</button></div><div class="auth-message" id="auth-message"></div></form></div></div>`;
   }
 
   function renderPasswordResetPage() {
@@ -14432,7 +14435,7 @@
       if (a === "focus-search") { setSection("search"); setTimeout(() => $("#search-input")?.focus(), 30); }
       if (a === "do-search") { state.search = $("#search-input")?.value || ""; navigate({ pagina: "pesquisar", q: state.search }); }
       if (a === "open-admin") { if (isAdminProfile()) openAdmin(); }
-      if (a === "open-auth") state.session ? openOwnPublicProfile() : openAuthPage();
+      if (a === "open-auth") { if (!PROFILE_SITE_MODE) window.location.assign(`${PROFILE_SITE_BASE}?pagina=entrar`); else state.session ? openOwnPublicProfile() : openAuthPage(); }
       if (a === "open-profile-page") {
         openOwnPublicProfile();
       }
@@ -14441,7 +14444,7 @@
       if (a === "notifications-popup") openNotificationsPopup();
       if (a === "staff-activity") { if (canViewBancaMonitoring()) openNotificationsPopup("staff"); }
       if (a === "logout") signOut();
-      if (a === "profile") openProfileSettings();
+      if (a === "profile") { if (PROFILE_SITE_MODE) openProfileSettings(); else openOwnPublicProfile(); }
       if (a === "submit") { if (isAdminProfile()) openSubmission(); else toast("O envio de quadrinhos é exclusivo para administradores."); }
       if (a === "open-local-box") { state.localBoxVisible = true; setSection("local-box"); }
       });
