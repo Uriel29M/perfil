@@ -35,7 +35,7 @@
         window.location.reload();
       });
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=profile-site-8-album-disabled", { updateViaCache: "none" })
+        navigator.serviceWorker.register("./sw.js?v=profile-site-9-album-disabled", { updateViaCache: "none" })
           .then(registration => registration.update())
           .catch(error => console.warn("Modo offline indisponível:", error));
       });
