@@ -3,7 +3,7 @@
 
   const loadApp = () => new Promise((resolve, reject) => {
     const script = document.createElement('script');
-    script.src = 'js/app.js?v=profile-site-7-album-disabled';
+    script.src = 'js/app.js?v=profile-site-8-album-disabled';
     script.onload = resolve;
     script.onerror = () => reject(new Error('Não foi possível carregar o app.js.'));
     document.body.appendChild(script);
