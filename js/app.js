@@ -2642,7 +2642,7 @@
   let profileFeaturePromise = null;
   function loadProfileFeature() {
     if (!profileFeaturePromise) {
-      profileFeaturePromise = import(appAssetUrl("js/profile-feature.js?v=2-album-paused"))
+      profileFeaturePromise = import(appAssetUrl("js/profile-feature.js?v=3-album-disabled"))
         .then(module => module.createProfileFeature({
           $,
           $$,
@@ -3294,7 +3294,7 @@
   function loadPublicProfileFeature() {
     if (publicProfileFeature) return Promise.resolve(publicProfileFeature);
     if (!publicProfileFeaturePromise) {
-      publicProfileFeaturePromise = import(appAssetUrl("js/public-profile-feature.js?v=4-album-paused"))
+      publicProfileFeaturePromise = import(appAssetUrl("js/public-profile-feature.js?v=5-album-disabled"))
         .then(module => {
           publicProfileFeature = module.createPublicProfileFeature({
             $,
@@ -4119,7 +4119,7 @@
   function loadStickerActionsFeature() {
     if (stickerActionsFeature) return Promise.resolve(stickerActionsFeature);
     if (!stickerActionsFeaturePromise) {
-      stickerActionsFeaturePromise = import(appAssetUrl("js/sticker-actions-feature.js?v=2-album-paused"))
+      stickerActionsFeaturePromise = import(appAssetUrl("js/sticker-actions-feature.js?v=3-album-disabled"))
         .then(module => {
           stickerActionsFeature = module.createStickerActionsFeature({
             $,
