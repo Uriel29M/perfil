@@ -1,4 +1,4 @@
-const CACHE_VERSION = "profile-site-shell-v14-main-downloads-route-guard";
+const CACHE_VERSION = "profile-site-shell-v15-direct-download-link";
 const SHELL_CACHE = CACHE_VERSION;
 const APP_SHELL = [
   "./", "./index.html", "./css/style.css?v=profile-site-6-shared-main-navigation",
