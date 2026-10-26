@@ -7,6 +7,7 @@
   const STICKER_ALBUM_ENABLED = false;
   const PROFILE_SITE_MODE = true;
   const PROFILE_SITE_BASE = "https://uriel29m.github.io/perfil/";
+  const MAIN_SITE_BASE = "https://uriel29m.github.io/bancadigital/";
 
   // --- Inicialização de Bibliotecas ---
   // --- Fim da Inicialização ---
@@ -1858,8 +1859,29 @@
       return;
     }
     if (PROFILE_SITE_MODE && !readerId && !params.get("pagina") && !params.get("colecao")) {
-      if (state.session?.user && state.profile?.username) window.location.replace(publicProfileHref(state.profile.username));
-      else { state.section = "login"; render(); }
+      if (state.session?.user) {
+        const offlineAccount = readOfflineAccount();
+        const ownUsername = state.profile?.username
+          || offlineAccount?.profile?.username
+          || offlineAccount?.username
+          || state.session.user.user_metadata?.username
+          || state.session.user.user_metadata?.user_name
+          || state.session.user.user_metadata?.preferred_username;
+        if (ownUsername) {
+          window.location.replace(publicProfileHref(ownUsername));
+        } else if (sb?.from && state.session.user.id) {
+          sb.from("profiles").select("username").eq("id", state.session.user.id).maybeSingle()
+            .then(result => {
+              const username = result?.data?.username;
+              window.location.replace(username ? publicProfileHref(username) : MAIN_SITE_BASE);
+            })
+            .catch(() => window.location.replace(MAIN_SITE_BASE));
+        } else {
+          window.location.replace(MAIN_SITE_BASE);
+        }
+      } else {
+        window.location.replace(MAIN_SITE_BASE);
+      }
       handlingRoute = false;
       return;
     }
@@ -14450,7 +14472,7 @@
       const a = el.dataset.action;
       if (a === "home") setSection("home");
       if (a === "random") openRandomCatalogItem();
-      if (a === "focus-search") { setSection("search"); setTimeout(() => $("#search-input")?.focus(), 30); }
+      if (a === "focus-search") { if (PROFILE_SITE_MODE) { window.location.assign(`${MAIN_SITE_BASE}?pagina=busca`); return; } setSection("search"); setTimeout(() => $("#search-input")?.focus(), 30); }
       if (a === "do-search") { state.search = $("#search-input")?.value || ""; navigate({ pagina: "pesquisar", q: state.search }); }
       if (a === "open-admin") { if (isAdminProfile()) openAdmin(); }
       if (a === "open-auth") { if (!PROFILE_SITE_MODE) window.location.assign(`${PROFILE_SITE_BASE}?pagina=entrar`); else state.session ? openOwnPublicProfile() : openAuthPage(); }
@@ -14458,7 +14480,7 @@
         openOwnPublicProfile();
       }
       if (a === "messages") openChat();
-      if (a === "downloads") setSection("downloads");
+      if (a === "downloads") { if (PROFILE_SITE_MODE) { window.location.assign(`${MAIN_SITE_BASE}?pagina=downloads`); return; } setSection("downloads"); }
       if (a === "notifications-popup") openNotificationsPopup();
       if (a === "staff-activity") { if (canViewBancaMonitoring()) openNotificationsPopup("staff"); }
       if (a === "logout") signOut();
@@ -15542,7 +15564,7 @@
   }
   // O site pode ser servido na raiz ou por uma pasta do GitHub Pages. Essas
   // pastas não são nomes de usuário e não devem abrir o perfil público.
-  const siteBasePaths = new Set(["banca-digital-quadrinhos-v3", "bancadigital", "banca-digital"]);
+  const siteBasePaths = new Set(["banca-digital-quadrinhos-v3", "bancadigital", "banca-digital", "perfil"]);
   const routeParts = siteBasePaths.has(pathParts[0]?.toLowerCase()) ? pathParts.slice(1) : pathParts;
   const queryProfile = new URLSearchParams(window.location.search).get("perfil");
   const queryPublicCollection = new URLSearchParams(window.location.search).get("lista");
