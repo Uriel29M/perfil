@@ -144,7 +144,7 @@
     // Sem sessão, volta para a Banca Digital principal.
     (() => {
       const url = new URL(window.location.href);
-      if (url.pathname.replace(/\\/+$/, "") !== "/perfil" || url.search || url.hash) return;
+      if (url.pathname.replace(/\/+$/, "") !== "/perfil" || url.search || url.hash) return;
       const main = "https://uriel29m.github.io/bancadigital/";
       const config = window.supabase;
       if (!config?.createClient || !window.BANCA_SUPABASE_URL || !window.BANCA_SUPABASE_KEY) {
