@@ -73,7 +73,7 @@
         window.location.reload();
       });
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=profile-site-12-shared-main-navigation", { updateViaCache: "none" })
+        navigator.serviceWorker.register("./sw.js?v=profile-site-14-main-downloads-route-guard", { updateViaCache: "none" })
           .then(registration => registration.update())
           .catch(error => console.warn("Modo offline indisponível:", error));
       });
