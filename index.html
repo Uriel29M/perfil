@@ -160,6 +160,7 @@
           window.location.replace(main);
           return;
         }
+        if (navigator.onLine === false) { window.location.replace(main + "?pagina=downloads#"); return; }
         const { data: profile, error: profileError } = await client
           .from("profiles_public").select("username").eq("id", user.id).maybeSingle();
         if (profileError || !profile?.username) {
