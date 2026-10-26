@@ -7,7 +7,7 @@
   <link rel="apple-touch-icon" href="assets/barracabrancaicon.png?v=1">
   <title>Perfis da Banca Digital</title>
   <meta name="description" content="Perfis públicos e privados da comunidade Banca Digital.">
-    <link rel="stylesheet" href="css/style.css?v=profile-site-5-profile-root-routing">
+    <link rel="stylesheet" href="css/style.css?v=profile-site-6-shared-main-navigation">
   <style>
     @media (hover: hover) and (pointer: fine) {
       .card-wrap > .card:hover > .card-completed,
@@ -35,7 +35,7 @@
         window.location.reload();
       });
       window.addEventListener("load", () => {
-        navigator.serviceWorker.register("./sw.js?v=profile-site-11-root-main-links", { updateViaCache: "none" })
+        navigator.serviceWorker.register("./sw.js?v=profile-site-12-shared-main-navigation", { updateViaCache: "none" })
           .then(registration => registration.update())
           .catch(error => console.warn("Modo offline indisponível:", error));
       });
@@ -89,6 +89,7 @@
         </summary>
         <div class="mobile-more-popover" role="menu" aria-label="Mais opções de navegação">
           <button type="button" data-mobile-action="random" role="menuitem">🎲 Aleatório</button>
+          <button type="button" data-mobile-action="focus-search" role="menuitem">⌕ Busca</button>
           <button type="button" data-mobile-section="comics" role="menuitem">Quadrinhos</button>
         </div>
       </details>
@@ -137,7 +138,7 @@
   <script src="js/data/dc-comics/novos-52.js?v=1.0.26"></script>
   <script src="js/catalog-identity.js?v=1"></script>
   <script src="js/data/loading-tips.js?v=1.0.0"></script>
-    <script src="js/app.js?v=profile-site-10-root-main-links"></script>
+    <script src="js/app.js?v=profile-site-11-shared-main-navigation"></script>
   <script>
     // A raiz do site /perfil/ é um atalho para o perfil da sessão atual.
     // Sem sessão, volta para a Banca Digital principal.
@@ -190,7 +191,9 @@
         const action = trigger.dataset.mobileAction || '';
         const section = trigger.dataset.mobileSection || '';
 
-        if (topbar?.classList.contains('is-offline') && action !== 'downloads') return;
+        if (action === "downloads") { window.location.href = "https://uriel29m.github.io/bancadigital/?pagina=downloads#"; return; }
+        if (action === "focus-search") { window.location.href = "https://uriel29m.github.io/bancadigital/?pagina=busca"; return; }
+        if (topbar?.classList.contains('is-offline')) return;
 
         const target = section
           ? findTopbarControl('section', section)
