@@ -1859,7 +1859,10 @@
       return;
     }
     if (PROFILE_SITE_MODE && !readerId && !params.get("pagina") && !params.get("colecao")) {
-      if (state.session?.user) {
+      if (state.session?.offline) {
+        // Quando a rede cair, mantenha os arquivos offline na área oficial da Banca.
+        window.location.replace(`${MAIN_SITE_BASE}?pagina=downloads`);
+      } else if (state.session?.user) {
         const offlineAccount = readOfflineAccount();
         const ownUsername = state.profile?.username
           || offlineAccount?.profile?.username
@@ -15692,7 +15695,11 @@
   accountBootstrap
     .then(async () => {
       if (state.section === "reader" && !activeReaderCleanup) applyRoute();
-      if (!initialPublicUsername && new URLSearchParams(window.location.search).get("pagina") === "estante") applyRoute();
+      const bootstrapParams = new URLSearchParams(window.location.search);
+      if (!initialPublicUsername && (
+        bootstrapParams.get("pagina") === "estante"
+        || (PROFILE_SITE_MODE && !bootstrapParams.get("pagina") && !bootstrapParams.get("colecao") && !bootstrapParams.get("ler"))
+      )) applyRoute();
       if (initialPublicUsername) await loadPublicProfile(initialPublicUsername, queryPublicCollection, STICKER_ALBUM_ENABLED && new URLSearchParams(window.location.search).get("album") === "1", { top10ListId: queryTop10List });
       pumpDownloadQueue();
     })
