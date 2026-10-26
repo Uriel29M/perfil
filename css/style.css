@@ -4235,8 +4235,7 @@ body.profile-site-mode .footer { display: none !important; }
 body.profile-site-mode .downloads-header-btn,
 body.profile-site-mode .ranking-header-btn,
 body.profile-site-mode .random-header-btn,
-body.profile-site-mode .staff-activity-button,
-body.profile-site-mode .top-actions [data-action="focus-search"] { display: none !important; }
+body.profile-site-mode .staff-activity-button { display: none !important; }
 body.profile-site-mode .top-actions { margin-left: auto; }
 body.profile-site-mode #main { flex: 1 0 auto; width: 100%; }
 body.profile-site-mode .brand { text-decoration: none; }
