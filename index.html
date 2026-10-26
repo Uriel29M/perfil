@@ -9,6 +9,7 @@
   <meta name="description" content="Perfis públicos e privados da comunidade Banca Digital.">
     <link rel="stylesheet" href="css/style.css?v=profile-site-6-shared-main-navigation">
   <style>
+    body.profile-site-mode .topbar .downloads-header-btn { display: inline-flex !important; }
     @media (hover: hover) and (pointer: fine) {
       .card-wrap > .card:hover > .card-completed,
       .card-wrap > .card:focus-within > .card-completed {
@@ -21,6 +22,43 @@
       }
     }
   </style>
+
+  <script>
+    (() => {
+      const mainDownloads = "https://uriel29m.github.io/bancadigital/?pagina=downloads#";
+      const isProfilePath = path => path === "/perfil" || path === "/perfil/";
+      const isProfileDownloadsUrl = value => {
+        if (!value) return false;
+        try {
+          const next = new URL(value, window.location.href);
+          return next.origin === window.location.origin
+            && isProfilePath(next.pathname)
+            && (next.searchParams.get("pagina") === "downloads" || next.searchParams.get("acao") === "downloads");
+        } catch { return false; }
+      };
+      if (isProfileDownloadsUrl(window.location.href)) {
+        window.location.replace(mainDownloads);
+        return;
+      }
+      for (const method of ["pushState", "replaceState"]) {
+        const original = history[method].bind(history);
+        history[method] = function(state, title, url) {
+          if (isProfileDownloadsUrl(url)) {
+            window.location.replace(mainDownloads);
+            return;
+          }
+          return original(state, title, url);
+        };
+      }
+      // If the connection drops while browsing a profile, use the shared reader
+      // and download store in the main application; don't render a duplicate list.
+      window.addEventListener("offline", () => {
+        if (!isProfilePath(window.location.pathname) || document.querySelector(".reader-overlay")) return;
+        window.location.replace(mainDownloads);
+      });
+    })();
+  </script>
+
   <script>
     // Mantém o app offline, mas também garante que uma versão nova assuma
     // a aba atual sem deixá-la executando JavaScript antigo.
@@ -55,13 +93,13 @@
         <button data-section="local-box" class="nav-link local-box-nav" style="display:none">Minha caixa</button>
             </nav>
       <div class="top-actions">
-        <a class="reader-btn downloads-header-btn" href="https://uriel29m.github.io/bancadigital/?pagina=downloads#" title="Downloads" aria-label="Downloads">↓</a>
+        <button class="reader-btn downloads-header-btn" data-action="downloads" title="Downloads" aria-label="Downloads">↓<span class="download-badge" hidden></span></button>
         <button class="reader-btn ranking-header-btn" data-section="ranking" title="Ranking" aria-label="Ranking">🏆</button>
         <button class="reader-btn random-header-btn" data-action="random" title="Surpreenda-me" aria-label="Surpreenda-me">🎲</button>
         <button class="reader-btn messages-header-btn" data-action="messages" title="Mensagens" aria-label="Mensagens">💬<span class="message-badge" hidden></span></button>
         <button class="icon-btn notification-bell" data-action="notifications-popup" title="Notificações" aria-label="Notificações"><span class="notification-bell-icon">🔔</span><span class="notification-badge" hidden></span></button>
         <button class="icon-btn staff-activity-button" data-action="staff-activity" title="Monitoramento" aria-label="Monitoramento">📜</button>
-        <a class="icon-btn profile-main-search-link" href="https://uriel29m.github.io/bancadigital/?pagina=busca" title="Busca na Banca Digital" aria-label="Busca">⌕</a>
+        <button class="icon-btn" data-action="focus-search" title="Busca" aria-label="Busca">⌕</button>
         <button class="avatar" data-action="open-profile-page" title="Entrar ou abrir meu perfil"><img class="top-avatar-img" src="assets/semfoto.jpg?v=1" alt="Perfil"></button>
       </div>
     </header>
