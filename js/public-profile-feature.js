@@ -75,8 +75,7 @@ export function createPublicProfileFeature(deps) {
 
   async function loadPublicProfile(username, collectionId = null, album = false, options = {}) {
     if (navigator.onLine === false || state.session?.offline) {
-      activateOfflineMode();
-      setSection("downloads");
+      window.location.href = "https://uriel29m.github.io/bancadigital/?pagina=downloads#";
       return;
     }
     const top10LoadRevision = state.top10Revision;
