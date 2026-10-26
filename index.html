@@ -55,13 +55,13 @@
         <button data-section="local-box" class="nav-link local-box-nav" style="display:none">Minha caixa</button>
             </nav>
       <div class="top-actions">
-        <button class="reader-btn downloads-header-btn" data-action="downloads" title="Downloads" aria-label="Downloads">↓<span class="download-badge" hidden></span></button>
+        <a class="reader-btn downloads-header-btn" href="https://uriel29m.github.io/bancadigital/?pagina=downloads#" title="Downloads" aria-label="Downloads">↓</a>
         <button class="reader-btn ranking-header-btn" data-section="ranking" title="Ranking" aria-label="Ranking">🏆</button>
         <button class="reader-btn random-header-btn" data-action="random" title="Surpreenda-me" aria-label="Surpreenda-me">🎲</button>
         <button class="reader-btn messages-header-btn" data-action="messages" title="Mensagens" aria-label="Mensagens">💬<span class="message-badge" hidden></span></button>
         <button class="icon-btn notification-bell" data-action="notifications-popup" title="Notificações" aria-label="Notificações"><span class="notification-bell-icon">🔔</span><span class="notification-badge" hidden></span></button>
         <button class="icon-btn staff-activity-button" data-action="staff-activity" title="Monitoramento" aria-label="Monitoramento">📜</button>
-        <button class="icon-btn" data-action="focus-search" title="Busca" aria-label="Busca">⌕</button>
+        <a class="icon-btn profile-main-search-link" href="https://uriel29m.github.io/bancadigital/?pagina=busca" title="Busca na Banca Digital" aria-label="Busca">⌕</a>
         <button class="avatar" data-action="open-profile-page" title="Entrar ou abrir meu perfil"><img class="top-avatar-img" src="assets/semfoto.jpg?v=1" alt="Perfil"></button>
       </div>
     </header>
@@ -138,6 +138,37 @@
   <script src="js/catalog-identity.js?v=1"></script>
   <script src="js/data/loading-tips.js?v=1.0.0"></script>
     <script src="js/app.js?v=profile-site-10-root-main-links"></script>
+  <script>
+    // A raiz do site /perfil/ é um atalho para o perfil da sessão atual.
+    // Sem sessão, volta para a Banca Digital principal.
+    (() => {
+      const url = new URL(window.location.href);
+      if (url.pathname.replace(/\\/+$/, "") !== "/perfil" || url.search || url.hash) return;
+      const main = "https://uriel29m.github.io/bancadigital/";
+      const config = window.supabase;
+      if (!config?.createClient || !window.BANCA_SUPABASE_URL || !window.BANCA_SUPABASE_KEY) {
+        window.location.replace(main);
+        return;
+      }
+      const client = config.createClient(window.BANCA_SUPABASE_URL, window.BANCA_SUPABASE_KEY, {
+        auth: { persistSession: true, autoRefreshToken: false, detectSessionInUrl: false }
+      });
+      client.auth.getSession().then(async ({ data, error }) => {
+        const user = !error ? data?.session?.user : null;
+        if (!user?.id) {
+          window.location.replace(main);
+          return;
+        }
+        const { data: profile, error: profileError } = await client
+          .from("profiles_public").select("username").eq("id", user.id).maybeSingle();
+        if (profileError || !profile?.username) {
+          window.location.replace(main);
+          return;
+        }
+        window.location.replace("https://uriel29m.github.io/perfil/?perfil=" + encodeURIComponent(profile.username));
+      }).catch(() => window.location.replace(main));
+    })();
+  </script>
   <script src="js/series-more.js?v=2-edition-about"></script>
   <script>
     (() => {
