@@ -1,8 +1,8 @@
-const CACHE_VERSION = "profile-site-shell-v10-album-disabled";
+const CACHE_VERSION = "profile-site-shell-v11-root-main-links";
 const SHELL_CACHE = CACHE_VERSION;
 const APP_SHELL = [
-  "./", "./index.html", "./css/style.css?v=profile-site-4",
-  "./js/app.js?v=profile-site-8-album-disabled", "./js/reader-deps.js?v=5-progressive-telegram", "./js/catalog-sync.js?v=6-telegram-pages",
+  "./", "./index.html", "./css/style.css?v=profile-site-5-profile-root-routing",
+  "./js/app.js?v=profile-site-9-root-main-links", "./js/reader-deps.js?v=5-progressive-telegram", "./js/catalog-sync.js?v=6-telegram-pages",
   "./js/catalog-identity.js?v=1", "./js/telegram-auto.js?v=5-external-media-gateway",
   "./js/telegram-pages.js?v=6-minimize",
   "./js/telegram-covers.js?v=2", "./js/data.js?v=2.2.7.39",
